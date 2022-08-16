@@ -7,12 +7,16 @@ class ImageCompressCropPage extends StatefulWidget {
     this.imageFile,
     required this.onTap,
     this.buttonWidget,
+    this.appBar,
+    this.addAnimation,
   }) : super(key: key);
 
+  final PreferredSizeWidget? appBar;
   final Widget? buttonWidget;
   final File? imageFile;
   final Uint8List? uint8list;
   final Function onTap;
+  final GestureTapCallback? addAnimation;
 
   @override
   State<ImageCompressCropPage> createState() => _ImageCompressCropPageState();
@@ -29,10 +33,11 @@ class _ImageCompressCropPageState extends State<ImageCompressCropPage> {
       return const SizedBox();
     }
     return Scaffold(
-      appBar: AppBar(
-        key: const Key("appBarCrop"),
-        title: const Text("Edit Image"),
-      ),
+      appBar: widget.appBar ??
+          AppBar(
+            key: const Key("appBarCrop"),
+            title: const Text("Edit Image"),
+          ),
       body: isLoading
           ? Container(
               color: Theme.of(context).appBarTheme.iconTheme?.color,
@@ -111,6 +116,9 @@ class _ImageCompressCropPageState extends State<ImageCompressCropPage> {
                                 icon: const Icon(Icons.lock_reset,
                                     color: Colors.white),
                                 onPressed: () {
+                                  if (widget.addAnimation != null) {
+                                    widget.addAnimation!();
+                                  }
                                   isCircleUi = false;
                                   controller
                                     ..withCircleUi = false
@@ -167,6 +175,9 @@ class _ImageCompressCropPageState extends State<ImageCompressCropPage> {
             isLoading = false;
           });
           Navigator.pop(context);
+          if (widget.addAnimation != null) {
+            Navigator.pop(context);
+          }
         }
       },
       initialSize: 0.5,
