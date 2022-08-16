@@ -1,4 +1,4 @@
-import 'package:flutter_image_crop_compress/src/crop_image_page.dart';
+import 'package:flutter_image_crop_compress/flutter_image_crop_compress.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {

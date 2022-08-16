@@ -1,9 +1,4 @@
-import 'dart:io';
-import 'dart:typed_data';
-
-import 'package:flutter/material.dart';
-import 'package:flutter_image_crop_compress/flutter_image_crop_compress.dart';
-import 'package:path_provider/path_provider.dart';
+part of flutter_image_crop_compress;
 
 class ImageCompressCropPage extends StatefulWidget {
   const ImageCompressCropPage({
