@@ -175,9 +175,6 @@ class _ImageCompressCropPageState extends State<ImageCompressCropPage> {
             isLoading = false;
           });
           Navigator.pop(context);
-          if (widget.addAnimation != null) {
-            Navigator.pop(context);
-          }
         }
       },
       initialSize: 0.5,
