@@ -2,7 +2,6 @@ library flutter_image_crop_compress;
 
 import 'dart:io';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

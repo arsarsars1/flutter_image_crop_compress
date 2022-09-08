@@ -1,6 +1,6 @@
 name: flutter_image_crop_compress
 description: A flutter plugin which compress and crop image with native (Objective-C/Kotlin) with faster speed. Support Android/iOS.
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/arsarsars1/flutter_image_crop_compress.git
 
 environment:
