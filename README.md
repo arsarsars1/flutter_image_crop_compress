@@ -2,7 +2,7 @@
 
 A flutter plugin which can `Compress` and provides `Crop` widget for cropping images.
 
-![Image Compress and Crop Preview](https://github.com/chooyan-eng/crop_your_image/raw/main/assets/cropyourimage.gif)
+![Image Compress and Crop Preview](https://github.com/arsarsars1/flutter_image_crop_compress/blob/master/assets/cropyourimage.gif)
 
 # Philosophy
 
