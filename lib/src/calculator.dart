@@ -1,4 +1,4 @@
-part of flutter_image_crop_compress;
+part of '../flutter_image_crop_compress.dart';
 
 /// Calculation logics for various [Rect] data.
 abstract class _Calculator {

@@ -1,4 +1,4 @@
-part of flutter_image_crop_compress;
+part of '../flutter_image_crop_compress.dart';
 
 /// Controller to control crop actions.
 class CropController {

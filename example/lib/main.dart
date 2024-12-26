@@ -46,10 +46,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             if (isProcessing)
-              Column(
+              const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
-                children: const [
+                children: [
                   CircularProgressIndicator(),
                   Text(
                     "Processing image",
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
     isProcessing = true;
     updateState();
     File? fileImage = await pickImage(context, isGallery: isGallery);
-    if (fileImage != null && mounted) {
+    if (fileImage != null && context.mounted) {
       await Navigator.push(
           context,
           MaterialPageRoute(

@@ -1,4 +1,4 @@
-part of flutter_image_crop_compress;
+part of '../flutter_image_crop_compress.dart';
 
 const dotTotalSize = 32.0; // fixed corner dot size.
 
@@ -59,7 +59,7 @@ class Crop extends StatelessWidget {
   final CornerDotBuilder? cornerDotBuilder;
 
   const Crop({
-    Key? key,
+    super.key,
     required this.image,
     required this.onCropped,
     this.aspectRatio,
@@ -71,9 +71,8 @@ class Crop extends StatelessWidget {
     this.maskColor,
     this.baseColor = Colors.white,
     this.cornerDotBuilder,
-  })  : assert((initialSize ?? 1.0) <= 1.0,
-            'initialSize must be less than 1.0, or null meaning not specified.'),
-        super(key: key);
+  }) : assert((initialSize ?? 1.0) <= 1.0,
+            'initialSize must be less than 1.0, or null meaning not specified.');
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +116,6 @@ class _CropEditor extends StatefulWidget {
   final CornerDotBuilder? cornerDotBuilder;
 
   const _CropEditor({
-    Key? key,
     required this.image,
     required this.onCropped,
     this.aspectRatio,
@@ -129,7 +127,7 @@ class _CropEditor extends StatefulWidget {
     this.maskColor,
     required this.baseColor,
     this.cornerDotBuilder,
-  }) : super(key: key);
+  });
 
   @override
   _CropEditorState createState() => _CropEditorState();
@@ -193,14 +191,17 @@ class _CropEditorState extends State<_CropEditor> {
     final tempImage = image.decodeImage(memoryImage.bytes);
     assert(tempImage != null);
 
+    // Extract orientation from EXIF
+    final exif = tempImage?.exif;
+    final orientation = exif?['Orientation'] ?? -1;
     // check orientation
-    switch (tempImage?.exif.data[0x0112] ?? -1) {
+    switch (orientation) {
       case 3:
-        return image.copyRotate(tempImage!, 180);
+        return image.copyRotate(tempImage!, angle: 180);
       case 6:
-        return image.copyRotate(tempImage!, 90);
+        return image.copyRotate(tempImage!, angle: 90);
       case 8:
-        return image.copyRotate(tempImage!, -90);
+        return image.copyRotate(tempImage!, angle: -90);
     }
     return tempImage;
   }
@@ -438,10 +439,10 @@ class _CircleCropAreaClipper extends CustomClipper<Path> {
 /// This Widget automaticall fits the appropriate size.
 class DotControl extends StatelessWidget {
   const DotControl({
-    Key? key,
+    super.key,
     this.color = Colors.white,
     this.padding = 8,
-  }) : super(key: key);
+  });
 
   /// [Color] of this widget. [Colors.white] by default.
   final Color color;
@@ -480,10 +481,10 @@ Uint8List _doCrop(List<dynamic> cropData) {
     image.encodePng(
       image.copyCrop(
         originalImage,
-        rect.left.toInt(),
-        rect.top.toInt(),
-        rect.width.toInt(),
-        rect.height.toInt(),
+        x: rect.left.toInt(),
+        y: rect.top.toInt(),
+        width: rect.width.toInt(),
+        height: rect.height.toInt(),
       ),
     ),
   );
@@ -498,8 +499,8 @@ Uint8List _doCropCircle(List<dynamic> cropData) {
     image.encodePng(
       image.copyCropCircle(
         originalImage,
-        center:
-            image.Point(rect.left + rect.width / 2, rect.top + rect.height / 2),
+        centerX: (rect.left + rect.width / 2).toInt(),
+        centerY: (rect.top + rect.height / 2).toInt(),
         radius: min(rect.width, rect.height) ~/ 2,
       ),
     ),

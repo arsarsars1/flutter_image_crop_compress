@@ -1,8 +1,8 @@
-part of flutter_image_crop_compress;
+part of '../flutter_image_crop_compress.dart';
 
 class ImageCompressCropPage extends StatefulWidget {
   const ImageCompressCropPage({
-    Key? key,
+    super.key,
     this.uint8list,
     this.imageFile,
     required this.onTap,
@@ -11,7 +11,7 @@ class ImageCompressCropPage extends StatefulWidget {
     this.appBar,
     this.addAnimation,
     this.textNoImage = "No image found",
-  }) : super(key: key);
+  });
 
   final String textNoImage;
   final PreferredSizeWidget? appBar;

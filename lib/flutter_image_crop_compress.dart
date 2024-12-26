@@ -1,4 +1,4 @@
-library flutter_image_crop_compress;
+library;
 
 import 'dart:io';
 import 'dart:math';

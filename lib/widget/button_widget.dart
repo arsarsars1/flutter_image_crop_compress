@@ -1,4 +1,4 @@
-part of flutter_image_crop_compress;
+part of '../flutter_image_crop_compress.dart';
 
 class ButtonWidget extends StatefulWidget {
   final String? title;
@@ -15,7 +15,7 @@ class ButtonWidget extends StatefulWidget {
   final EdgeInsets padding;
 
   const ButtonWidget({
-    required Key? key,
+    required super.key,
     this.title,
     this.titleWidget,
     required this.onTap,
@@ -28,7 +28,7 @@ class ButtonWidget extends StatefulWidget {
     this.borderAndTextColor,
     this.btcIcon,
     this.padding = const EdgeInsets.all(14),
-  }) : super(key: key);
+  });
 
   @override
   State<ButtonWidget> createState() => _ButtonWidgetState();
@@ -82,7 +82,7 @@ class _ButtonWidgetState extends State<ButtonWidget> {
                       text: widget.isCapital
                           ? (widget.title ?? "").toUpperCase()
                           : widget.title ?? "",
-                      style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: widget.title == widget.selectedText
                               ? widget.colorBtn
                               : (widget.borderAndTextColor ??
